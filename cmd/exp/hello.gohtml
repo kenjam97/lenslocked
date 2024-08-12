@@ -1,0 +1,25 @@
+{{- /* Go Template file */}}
+
+<script>
+  const user = {
+    name: "{{.Name}}",
+    bio: "{{.Bio}}",
+    email: "{{.Email}}",
+  };
+  console.log(user);
+</script>
+
+<div>
+  <ul>
+    {{range $food, $category := .FavouriteFoods}}
+    <li>{{ $food }} ({{ $category }})</li>
+    {{
+      end
+    }}
+  </ul>
+  {{ range.Reviews }}
+  <p>{{.Comment}} - {{.Rating}}/5</p>
+  {{ end }}
+
+  {{index .FavouriteFoods "Pizza"}}
+</div>
