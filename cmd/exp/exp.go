@@ -1,51 +1,27 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"log"
 )
 
-type Reviews struct {
-	Comment string
-	Rating  int
-}
-
-type User struct {
-	Name           string
-	Bio            string
-	Email          string
-	FavouriteFoods map[string]string
-	Reviews        []Reviews
-}
-
-func Connect() error {
-	return errors.New("connection failed")
-}
-
-func CreateUser() error {
-	err := Connect()
-	if err != nil {
-		return fmt.Errorf("create user: %w", err)
-	}
-	return nil
-}
-
-func CreateOrg() error {
-	err := CreateUser()
-	if err != nil {
-		return fmt.Errorf("create org: %w", err)
-	}
-	return nil
-}
-
 func main() {
-	err := CreateUser()
-	if err != nil {
-		log.Println(err)
+	fib := []int{1, 1, 2, 3, 5, 8}
+	Demo(fib...)
+	fmt.Println(Sum(fib...))
+
+}
+
+func Sum(numbers ...int) int {
+	sum := 0
+	for i := 0; i < len(numbers); i++ {
+		sum += numbers[i]
 	}
-	err = CreateOrg()
-	if err != nil {
-		log.Println(err)
+	return sum
+}
+
+func Demo(numbers ...int) {
+	for _, number := range numbers {
+		fmt.Print(number, " ")
 	}
+	fmt.Println()
 }
